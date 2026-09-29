@@ -1,1 +1,527 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&display=swap");
 
+:root {
+  /* Colors */
+
+    /* Primary */
+    --lime: hsl(61, 70%, 52%);
+    --lime-bg: hsl(60, 76.47%, 93.33%);
+    --lime-hover: hsl(61.43, 71.19%, 76.86%);
+    --red: hsl(4, 69%, 50%);
+
+    /* Neutral */
+    --white: hsl(0, 0%, 100%);
+    --slate-100: hsl(202, 86%, 94%);
+    --slate-300: hsl(203, 41%, 72%);
+    --slate-500: hsl(200, 26%, 54%);
+    --slate-700: hsl(200, 24%, 40%);
+    --slate-900: hsl(202, 55%, 16%);
+    --slate-card: hsl(206, 61%, 12%);
+
+  /* Typography */
+    /* Font */
+    --font-family: "Plus Jakarta Sans", sans-serif;
+
+    /* Font Sizes */
+    --fs-error: 0.8125rem;
+    --fs-body: clamp(0.9375rem, 0.5vw + 0.85rem, 1rem);
+    --fs-btn: clamp(1rem, 0.4vw + 0.9rem, 1.125rem);
+    --fs-subtotal: clamp(1.25rem, 1.5vw + 0.5rem, 1.5rem);
+    --fs-title: clamp(1.125rem, 1vw + 0.85rem, 1.5rem);
+    --fs-display: clamp(2.25rem, 3.5vw + 1rem, 3.5rem);
+
+    /* Font Weights */
+    --fw-medium: 500;
+    --fw-bold: 700;
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove spin buttons for Chrome, Safari, Edge, Opera */
+.form-input::-webkit-outer-spin-button,
+.form-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Remove spin buttons for Firefox */
+.form-input {
+    -moz-appearance: textfield;
+}
+
+body {
+    font-family: var(--font-family);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-body);
+    line-height: 1.5;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul,
+ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    }
+
+/* =================================main layout================================= */
+.calculator {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.5rem, 0.5vw + 0.6rem, 0.75rem);
+    width: 100%;
+}
+
+.calculator__left {
+    background-color: var(--white);
+    padding: clamp(1.6rem, 1.5vw + 1.25rem, 2.375rem) clamp(1.5rem, 2vw + 1rem, 2.5rem);
+}
+
+.calculator__header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    width: 100%;
+}
+
+.calculator__title {
+    color: var(--slate-900);
+    font-size: var(--fs-title);
+    font-weight: var(--fw-bold);
+}
+
+.calculator__clear-btn {
+    color: var(--slate-700);
+    text-decoration-line: underline;
+    text-underline-offset: 3px;
+    margin-block-start: -0.5rem;
+    margin-block-end: clamp(1rem, 1.5vw + 0.75rem, 1.875rem);
+    transition: color 0.2s ease-in-out;
+}
+
+.calculator__clear-btn:hover {
+    color: var(--slate-900);
+}
+
+/* =================================form styling================================= */
+.calculator__form {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.5rem, 1vw + 0.25rem, 1rem);
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 1.5vw + 0.75rem, 1.875rem);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group--radio {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.375rem, 0.5vw + 0.35rem, 0.5rem);
+}
+
+.radio-label {
+    color: var(--slate-900);
+    font-size: var(--fs-btn);
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    width: 100%;
+    height: 3.25rem;
+    padding: 0 1rem;
+    border: 1px solid var(--slate-500);
+    border-radius: 0.25rem;
+    background-color: var(--white);
+    color: var(--slate-900);
+    font-weight: var(--fw-bold);
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.radio-label input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2.5px solid var(--slate-500);
+    border-radius: 50%;
+    outline: none;
+    display: grid;
+    place-content: center;
+    margin: 0;
+    cursor: pointer;
+    background-color: var(--white);
+    transition: border-color 0.2s ease;
+}
+
+.radio-label input[type="radio"]:checked {
+    border-color: var(--lime);
+    background-color: var(--lime);
+    box-shadow: inset 0 0 0 3px var(--white); 
+}
+
+.radio-label:hover {
+    border-color: var(--lime);
+}
+
+.radio-label:has(input[type="radio"]:checked) {
+    border-color: var(--lime);
+    background-color: var(--lime-bg);
+}
+
+.form-label {
+    color: var(--slate-700);
+    margin-block-end: clamp(0.375rem, 0.5vw + 0.35rem, 0.625rem);
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    height: 3.125rem;
+    border: 1px solid var(--slate-500);
+    border-radius: 0.25rem;
+    overflow: hidden;
+    background-color: var(--white);
+    transition: border-color 0.2s ease;
+}
+
+.input-wrapper:focus-within {
+    border-color: var(--slate-900);
+}
+
+.input-wrapper .form-input,
+.input-wrapper .form-select {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 0.75rem 1rem;
+    background: transparent;
+    color: var(--slate-900);
+    font-weight: var(--fw-bold);
+    width: 100%;
+}
+
+.input-wrapper--currency .form-select {
+    background-color: var(--slate-100);
+    color: var(--slate-700);
+    max-width: 4rem;
+    padding: 0.75rem 0.75rem;
+    height: 100%;
+    border-radius: 0;
+    cursor: pointer;
+}
+
+/* Base styles shared by all suffixes/symbols */
+.input-suffix,
+.input-symbol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: 0.75rem;
+    background-color: var(--slate-100);
+    color: var(--slate-700);
+    font-weight: var(--fw-bold);
+    user-select: none;
+}
+
+/* Specifically for the Percentage (%) box */
+.input-suffix--percent {
+    padding-inline: 1rem;
+}
+
+/* Specifically for the Years box */
+.input-suffix--years {
+    padding-inline: 1.125rem;
+}
+
+.calculator__submit-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(0.5rem, 1.5vw + 0.25rem, 1rem);
+    width: 100%;
+    color: var(--slate-900);
+    background-color: var(--lime);
+    font-size: var(--fs-btn);
+    font-weight: var(--fw-bold);
+    border-radius: 50rem;
+    padding-block: clamp(0.75rem, 1.5vw + 0.5rem, 0.9375rem);
+    transition: background-color 0.2s ease-in-out;
+}
+
+.calculator__submit-btn:hover {
+    background-color: var(--lime-hover);
+}
+
+/* =================================form error states================================= */
+.form-group.error .input-wrapper {
+    border-color: var(--red);
+}
+
+.form-group.error .input-suffix,
+.form-group.error .input-symbol,
+.form-group.error .form-select {
+    background-color: var(--red);
+    color: var(--white);
+}
+
+.form-error-msg {
+    color: var(--red);
+    font-size: var(--fs-error);
+    margin-block-start: 0.5rem;
+    display: none;
+}
+
+.form-group.error .form-error-msg {
+    display: block;
+}
+
+/* =================================results section ================================= */
+.results {
+    background-color: var(--slate-900);
+    color: var(--white);
+    padding: clamp(1rem, 1.5vw + 1rem, 2rem);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.results__empty-state,
+.results__completed-state {
+    display: none;
+    width: 100%;
+}
+
+/* ----------------------------------
+1. EMPTY STATE STYLING
+   ---------------------------------- */
+.results.results--empty .results__empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.results.results--empty .results__title {
+    font-size: var(--fs-title);
+    font-weight: var(--fw-bold);
+    color: var(--white);
+}
+
+.results.results--empty .results__description {
+    color: var(--slate-300);
+    margin: 0;
+}
+
+
+/* ----------------------------------
+2. COMPLETED STATE STYLING
+   ---------------------------------- */
+.results.results--completed .results__completed-state {
+    display: flex;
+    flex-direction: column;
+    padding-inline: clamp(0.25rem, 0.5vw + 0.35rem, 0.5rem);
+}
+
+.results.results--completed {
+    padding-block: clamp(0.5rem, 0.8vw + 0.3rem, 1rem);
+}
+
+.results.results--completed .results__title {
+    font-size: var(--fs-title);
+    font-weight: var(--fw-bold);
+    color: var(--white);
+}
+
+.results.results--completed .results__description {
+    color: var(--slate-300);
+    margin-block-end: 2.375rem;
+}
+
+.results.results--completed .results__card {
+    background-color: var(--slate-card);
+    border-radius: 0.75rem;
+    border-top: 4px solid var(--lime);
+    padding: clamp(1.25rem, 1.5vw + 0.5rem, 1.75rem);
+    margin-block-start: 0;
+    width: 100%;
+    max-width: 100%;
+} 
+
+
+/* ----------------------------------
+3. SHARED RESULT COMPONENTS
+   ---------------------------------- */
+.results__image {
+    display: block;
+    margin-inline: auto;
+}
+
+.results__group {
+    display: flex;
+    flex-direction: column;
+}
+
+.results__label {
+    color: var(--slate-300);
+}
+
+.results__output {
+    font-weight: var(--fw-bold);
+    color: var(--white);
+}
+
+.results__output--monthly {
+    font-size: var(--fs-display);
+    color: var(--lime);
+}
+
+.results__output--total {
+    font-size: var(--fs-subtotal);
+}
+
+.results__divider {
+    border: none;
+    border-top: 1px solid var(--slate-700);
+    margin-block: clamp(1rem, 1.5vw + 0.6rem, 2rem);
+}
+
+/* =================================media queries (desktop breakpoint) ================= */
+@media screen and (min-width: 48rem) {
+    body {
+        background-color: var(--slate-100);
+    }
+
+    .calculator {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-content: center;
+        gap: 0;
+        background-color: var(--white);
+        border-radius: 1.5rem;
+        overflow: hidden;
+        padding: 0;
+        width: 100%;
+        max-width: 63rem;
+        margin-top: 8vh;
+    }
+
+    .calculator__left {
+        display: flex;
+        flex-direction: column; 
+        justify-content: center;
+    }
+
+    .calculator__header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-block-start: clamp(-1rem, -0.05vw - 0.98rem, -0.98rem);
+        margin-block-end: clamp(1rem, 2vw + 0.5rem, 1.25rem);
+    }
+
+    .calculator__clear-btn {
+        margin-block: 0;
+    }
+
+    .calculator__submit-btn {
+        width: 74%;
+        margin-block-start: clamp(0.0625rem, 0.2vw + 0.05rem, 0.125rem);
+    }
+
+    .form-row {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: clamp(1rem, 0.5vw + 1.15rem, 1.375rem);
+    }
+
+    .form-row .form-group {
+        flex: 1;
+    }
+
+    .form-group {
+        margin-block-end: clamp(0.25rem, 0.5vw + 0.35rem, 0.5rem);
+    }
+
+    .form-group--radio {
+        margin-block-end: clamp(1rem, 0.5vw + 0.9rem, 1.25rem);
+    }
+
+    .results {
+        text-align: center;
+        border-bottom-left-radius: 5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .results.results--empty .results__empty-state {
+        align-items: center;
+        text-align: center;
+    }
+
+    .results.results--completed .results__completed-state {
+        text-align: left;
+    }
+
+    .results.results--completed .results__title,
+    .results.results--completed .results__description {
+        text-align: left;
+    }
+}
+
+/* =================================accessibility: reduced motion ====================== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms;
+        animation-iteration-count: 1;
+        transition-duration: 0.01ms;
+        transition-delay: 0s;
+        scroll-behavior: auto;
+    }
+}
