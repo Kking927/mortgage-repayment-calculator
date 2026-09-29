@@ -1,1 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Mortgage Repayment Calculator</title>
+</head>
+
+<body>
+
+    <main class="calculator">
+
+        <!-- Left Column Wrapper (Header + Form) -->
+        <div class="calculator__left">
+            <!-- Header Section -->
+            <div class="calculator__header">
+                <h1 class="calculator__title">Mortgage Calculator</h1>
+                <button type="button" class="calculator__clear-btn">Clear All</button>
+            </div>
+
+            <!-- Form Section -->
+            <form class="calculator__form">
+                <!-- Mortgage Amount -->
+                <div class="form-group">
+                    <label for="amount" class="form-label">Mortgage Amount</label>
+                    <div class="input-wrapper input-wrapper--currency">
+                        <!-- Currency Selector Dropdown -->
+                        <select id="currency-selector" class="form-select" aria-label="Currency">
+                            <option value="£" selected>£</option>
+                            <option value="$">$</option>
+                            <option value="€">€</option>
+                        </select>
+                        <input type="text" id="amount" class="form-input" inputmode="decimal">
+                    </div>
+                    <p class="form-error-msg">This field is required</p>
+                </div>
+
+                <!-- Row for Term and Rate -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="term" class="form-label">Mortgage Term</label>
+                        <div class="input-wrapper input-wrapper--suffix">
+                            <input type="text" id="term" class="form-input" inputmode="decimal">
+                            <span class="input-suffix input-suffix--years">years</span>
+                        </div>
+                        <p class="form-error-msg">This field is required</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rate" class="form-label">Interest Rate</label>
+                        <div class="input-wrapper input-wrapper--suffix">
+                            <input type="text" id="rate" class="form-input" inputmode="decimal">
+                            <span class="input-suffix input-suffix--percent">%</span>
+                        </div>
+                        <p class="form-error-msg">This field is required</p>
+                    </div>
+                </div>
+
+                <!-- Mortgage Type Radios -->
+                <fieldset class="form-group form-group--radio">
+                    <legend class="form-label">Mortgage Type</legend>
+
+                    <label class="radio-label">
+                        <input type="radio" name="mortgage-type" value="repayment">
+                        Repayment
+                    </label>
+
+                    <label class="radio-label">
+                        <input type="radio" name="mortgage-type" value="interest-only">
+                        Interest Only
+                    </label>
+
+                    <p class="form-error-msg">This field is required</p>
+                </fieldset>
+
+                <!-- Submit Button -->
+                <button type="submit" class="calculator__submit-btn">
+                    <img src="images/icon-calculator.svg" alt="" class="calculator__submit-icon" />
+                    Calculate Repayments
+                </button>
+            </form>
+        </div>
+
+        <!-- Right Column: Results Section (Handles both Empty and Completed States) -->
+        <section class="results results--empty">
+            <!-- Empty State Content (Visible by default) -->
+            <div class="results__empty-state">
+                <img src="images/illustration-empty.svg" alt="" class="results__image" />
+                <h2 class="results__title">Results shown here</h2>
+                <p class="results__description">Complete the form and click “calculate repayments” to see what your monthly repayments would be.</p>
+            </div>
+
+            <!-- Completed State Content (Hidden by default, shown via CSS/JS later) -->
+            <div class="results__completed-state">
+                <h2 class="results__title">Your results</h2>
+                <p class="results__description">Your results are shown below based on the information you provided. To adjust the results, edit the form and click “calculate repayments” again.</p>
+
+                <div class="results__card">
+                    <div class="results__group">
+                        <span class="results__label">Your monthly repayments</span>
+                        <p class="results__output results__output--monthly">£0.00</p>
+                    </div>
+
+                    <hr class="results__divider">
+
+                    <div class="results__group">
+                        <span class="results__label">Total you'll repay over the term</span>
+                        <p class="results__output results__output--total">£0.00</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
