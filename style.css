@@ -500,6 +500,7 @@ select {
         border-bottom-left-radius: 5rem;
         display: flex;
         flex-direction: column;
+        justify-content: center;
     }
 
     .results.results--completed .results__completed-state {
