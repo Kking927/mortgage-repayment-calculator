@@ -238,6 +238,7 @@ select {
     padding: 0.75rem 1rem;
     background: transparent;
     color: var(--slate-900);
+    font-size: var(--fs-btn);
     font-weight: var(--fw-bold);
     width: 100%;
 }
@@ -250,6 +251,12 @@ select {
     height: 100%;
     border-radius: 0;
     cursor: pointer;
+}
+
+/* Change cursor and opacity when the currency selector is disabled */
+.input-wrapper--currency .form-select:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
 }
 
 /* Base styles shared by all suffixes/symbols */
@@ -288,6 +295,7 @@ select {
     font-weight: var(--fw-bold);
     border-radius: 50rem;
     padding-block: clamp(0.75rem, 1.5vw + 0.5rem, 0.9375rem);
+    margin-block-start: 1rem;
     transition: background-color 0.2s ease-in-out;
 }
 
@@ -322,12 +330,9 @@ select {
 .results {
     background-color: var(--slate-900);
     color: var(--white);
-    padding: clamp(1rem, 1.5vw + 1rem, 2rem);
     width: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin: 0;
 }
 
 .results__empty-state,
@@ -342,7 +347,14 @@ select {
 .results.results--empty .results__empty-state {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 1.5vw + 1rem, 2rem);
+}
+
+.results__image {
+    display: block;
+    margin-inline: auto;
 }
 
 .results.results--empty .results__title {
@@ -354,8 +366,8 @@ select {
 .results.results--empty .results__description {
     color: var(--slate-300);
     margin: 0;
+    text-align: center;
 }
-
 
 /* ----------------------------------
 2. COMPLETED STATE STYLING
@@ -363,55 +375,49 @@ select {
 .results.results--completed .results__completed-state {
     display: flex;
     flex-direction: column;
-    padding-inline: clamp(0.25rem, 0.5vw + 0.35rem, 0.5rem);
-}
-
-.results.results--completed {
-    padding-block: clamp(0.5rem, 0.8vw + 0.3rem, 1rem);
+    padding: clamp(1.5rem, 2vw + 1rem, 2.5rem);
 }
 
 .results.results--completed .results__title {
     font-size: var(--fs-title);
     font-weight: var(--fw-bold);
     color: var(--white);
+    margin: 0;
 }
 
 .results.results--completed .results__description {
     color: var(--slate-300);
-    margin-block-end: 2.375rem;
+    margin-block-end: clamp(1.5rem, 2vw + 1rem, 2.375rem);
 }
 
 .results.results--completed .results__card {
     background-color: var(--slate-card);
     border-radius: 0.75rem;
     border-top: 4px solid var(--lime);
-    padding: clamp(1.25rem, 1.5vw + 0.5rem, 1.75rem);
+    padding: clamp(1.25rem, 1.5vw + 1rem, 1.875rem) clamp(1.25rem, 1.5vw + 1rem, 2rem);
     margin-block-start: 0;
     width: 100%;
     max-width: 100%;
-} 
-
-
-/* ----------------------------------
-3. SHARED RESULT COMPONENTS
-   ---------------------------------- */
-.results__image {
-    display: block;
-    margin-inline: auto;
 }
 
 .results__group {
     display: flex;
     flex-direction: column;
+    margin: 0;
 }
 
 .results__label {
     color: var(--slate-300);
 }
 
+.results__label--total {
+    margin-block-end: clamp(0.125rem, 0.3vw + 0.1rem, 0.25rem);
+}
+
 .results__output {
     font-weight: var(--fw-bold);
     color: var(--white);
+    margin: 0;
 }
 
 .results__output--monthly {
@@ -426,7 +432,7 @@ select {
 .results__divider {
     border: none;
     border-top: 1px solid var(--slate-700);
-    margin-block: clamp(1rem, 1.5vw + 0.6rem, 2rem);
+    margin-block: clamp(1rem, 1.2vw + 0.8rem, 1.5rem) clamp(1.25rem, 1.5vw + 1rem, 2rem);
 }
 
 /* =================================media queries (desktop breakpoint) ================= */
@@ -491,25 +497,13 @@ select {
     }
 
     .results {
-        text-align: center;
         border-bottom-left-radius: 5rem;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-    }
-
-    .results.results--empty .results__empty-state {
-        align-items: center;
-        text-align: center;
     }
 
     .results.results--completed .results__completed-state {
-        text-align: left;
-    }
-
-    .results.results--completed .results__title,
-    .results.results--completed .results__description {
-        text-align: left;
+        padding-block: 2.25rem;
     }
 }
 
