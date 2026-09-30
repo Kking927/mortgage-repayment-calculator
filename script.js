@@ -24,6 +24,9 @@ const calculateBtn = document.querySelector('.calculator__submit-btn');
 // Results Display Panel
 const resultsSection = document.querySelector('.results');
 
+// Select all numeric fields for comma formatting
+const numericInputs = document.querySelectorAll('#amount, #term, #rate');
+
 
 /* ==========================================
 2. CURRENCY STATE MANAGEMENT
@@ -69,6 +72,72 @@ function formatCurrency(amount) {
    return `${selectedCurrency}${formattedNumber}`;
 }
 
+// Helper function to auto-add commas and decimals (.00) to inputs, skipping term
+function formatNumberInput(value, inputId) {
+   if (!value) return '';
+   
+   let cleanValue = value.toString().replace(/,/g, '').replace(/[^0-9.]/g, '');
+   let parts = cleanValue.split('.');
+   let integerPart = parts[0];
+   let decimalPart = parts.length > 1 ? '.' + parts[1] : '';
+   
+   integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+   
+   // Skip adding .00 if this is the term input box
+   if (inputId !== 'term') {
+      if (decimalPart === '' && integerPart !== '') {
+         decimalPart = '.00';
+      } else if (decimalPart.length === 2) {
+         decimalPart += '0';
+      }
+   } else {
+      // Keep term free of decimals/trailing zeros
+      decimalPart = ''; 
+   }
+   
+   return integerPart + decimalPart;
+}
+
+// Attach input, focus, and blur listeners for live formatting while typing
+numericInputs.forEach(input => {
+   // Strip commas when clicking into the input so it's easy to edit
+   input.addEventListener('focus', (e) => {
+      e.target.value = e.target.value.replace(/,/g, '');
+   });
+
+   // Format live as the user types
+   input.addEventListener('input', (e) => {
+      let inputField = e.target;
+      let originalCursorPosition = inputField.selectionStart;
+      let originalLength = inputField.value.length;
+
+      // Apply formatting (commas only during live typing)
+      let rawValue = inputField.value.replace(/,/g, '').replace(/[^0-9.]/g, '');
+      let parts = rawValue.split('.');
+      let integerPart = parts[0];
+      let decimalPart = parts.length > 1 ? '.' + parts[1] : '';
+      
+      integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      
+      let formattedValue = integerPart + decimalPart;
+
+      // Update the value
+      inputField.value = formattedValue;
+
+      // Adjust cursor position so it doesn't jump to the end
+      let newLength = inputField.value.length;
+      let cursorAdjustment = newLength - originalLength;
+      inputField.setSelectionRange(originalCursorPosition + cursorAdjustment, originalCursorPosition + cursorAdjustment);
+   });
+
+   // Add .00 (for amount/rate) and commas when clicking away (blur)
+   input.addEventListener('blur', (e) => {
+      if (e.target.value.trim() !== '') {
+         e.target.value = formatNumberInput(e.target.value, e.target.id);
+      }
+   });
+});
+
 
 /* ==========================================
    5. CORE MORTGAGE CALCULATION ENGINE
@@ -112,10 +181,17 @@ const totalOutput = document.querySelector('.results__output--total');
 mortgageForm.addEventListener('submit', function(event) {
    event.preventDefault();
 
+   // Format all numeric fields upon clicking submit as well
+   numericInputs.forEach(input => {
+      if (input.value.trim() !== '') {
+         input.value = formatNumberInput(input.value, input.id);
+      }
+   });
+
    // Helper function for Amount & Term
    function handleFieldError(inputElement, groupElement, customMsg) {
       const valueStr = inputElement.value.trim();
-      const valueNum = parseFloat(valueStr);
+      const valueNum = parseFloat(valueStr.replace(/,/g, '')); // Strip commas before checking number value
       const errorMsg = groupElement.querySelector('.form-error-msg');
 
       if (valueStr === '' || isNaN(valueNum) || valueNum < 0.1) {
@@ -130,11 +206,14 @@ mortgageForm.addEventListener('submit', function(event) {
       }
    }
 
-   // Extract values
+   // Extract values (making sure to strip commas so math doesn't break)
    const cleanAmount = amountInput.value.replace(/,/g, '');
+   const cleanTerm = termInput.value.replace(/,/g, '');
+   const cleanRate = rateInput.value.replace(/,/g, '');
+
    const amount = parseFloat(cleanAmount);
-   const term = parseFloat(termInput.value);
-   const rate = parseFloat(rateInput.value);
+   const term = parseFloat(cleanTerm);
+   const rate = parseFloat(cleanRate);
 
    let selectedType = '';
    mortgageTypeRadios.forEach(radio => {
@@ -156,9 +235,10 @@ mortgageForm.addEventListener('submit', function(event) {
 
    // 3. Validate Interest Rate
    const rateStr = rateInput.value.trim();
+   const rateNum = parseFloat(rateStr.replace(/,/g, ''));
    const rateErrorMsg = rateGroup.querySelector('.form-error-msg');
 
-   if (rateStr === '' || isNaN(rate) || rate < 0.1) {
+   if (rateStr === '' || isNaN(rateNum) || rateNum < 0.1) {
       rateGroup.classList.add('error');
       if (rateErrorMsg) {
          rateErrorMsg.textContent = rateStr === '' ? 'This field is required' : 'Please enter a valid interest rate';
