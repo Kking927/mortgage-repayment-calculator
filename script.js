@@ -1,5 +1,5 @@
 /* ==========================================
-1. DOM ELEMENTS SELECTION
+   1. DOM ELEMENTS SELECTION
    ========================================== */
 const mortgageForm = document.querySelector('.calculator__form');
 
@@ -29,7 +29,7 @@ const numericInputs = document.querySelectorAll('#amount, #term, #rate');
 
 
 /* ==========================================
-2. CURRENCY STATE MANAGEMENT
+   2. CURRENCY STATE MANAGEMENT
    ========================================== */
 let selectedCurrency = '£';
 
@@ -39,7 +39,7 @@ currencySelector.addEventListener('change', function(event) {
 
 
 /* ==========================================
-3. EVENT LISTENERS & FUNCTIONALITY
+   3. EVENT LISTENERS & FUNCTIONALITY
    ========================================== */
 
 clearBtn.addEventListener('click', function() {
@@ -273,4 +273,21 @@ mortgageForm.addEventListener('submit', function(event) {
 
    resultsSection.classList.remove('results--empty');
    resultsSection.classList.add('results--completed');
+});
+
+
+/* ==========================================
+   7. ACCESSIBILITY: RADIO ENTER KEY HANDLER
+   ========================================== */
+document.querySelectorAll('.radio-label').forEach(label => {
+   label.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+         e.preventDefault();
+         const radioInput = label.querySelector('input[type="radio"]');
+         if (radioInput) {
+               radioInput.checked = true;
+               radioInput.dispatchEvent(new Event('change', { bubbles: true }));
+         }
+      }
+   });
 });
