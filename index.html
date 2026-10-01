@@ -32,9 +32,9 @@
                             <option value="$">$</option>
                             <option value="€">€</option>
                         </select>
-                        <input type="text" id="amount" class="form-input" inputmode="decimal">
+                        <input type="text" id="amount" class="form-input" inputmode="decimal" aria-describedby="amount-error">
                     </div>
-                    <p class="form-error-msg">This field is required</p>
+                    <p id="amount-error" class="form-error-msg">This field is required</p>
                 </div>
 
                 <!-- Row for Term and Rate -->
@@ -42,19 +42,19 @@
                     <div class="form-group">
                         <label for="term" class="form-label">Mortgage Term</label>
                         <div class="input-wrapper input-wrapper--suffix">
-                            <input type="text" id="term" class="form-input" inputmode="decimal">
+                            <input type="text" id="term" class="form-input" inputmode="decimal" aria-describedby="term-error">
                             <span class="input-suffix input-suffix--years">years</span>
                         </div>
-                        <p class="form-error-msg">This field is required</p>
+                        <p id="term-error" class="form-error-msg">This field is required</p>
                     </div>
 
                     <div class="form-group">
                         <label for="rate" class="form-label">Interest Rate</label>
                         <div class="input-wrapper input-wrapper--suffix">
-                            <input type="text" id="rate" class="form-input" inputmode="decimal">
+                            <input type="text" id="rate" class="form-input" inputmode="decimal" aria-describedby="rate-error">
                             <span class="input-suffix input-suffix--percent">%</span>
                         </div>
-                        <p class="form-error-msg">This field is required</p>
+                        <p id="rate-error" class="form-error-msg">This field is required</p>
                     </div>
                 </div>
 
@@ -62,12 +62,12 @@
                 <fieldset class="form-group form-group--radio">
                     <legend class="form-label">Mortgage Type</legend>
 
-                    <label class="radio-label">
+                    <label class="radio-label" tabindex="0">
                         <input type="radio" name="mortgage-type" value="repayment">
                         Repayment
                     </label>
 
-                    <label class="radio-label">
+                    <label class="radio-label" tabindex="0">
                         <input type="radio" name="mortgage-type" value="interest-only">
                         Interest Only
                     </label>
