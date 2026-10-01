@@ -103,7 +103,7 @@ select {
 
 .calculator__left {
     background-color: var(--white);
-    padding: clamp(1.6rem, 1.5vw + 1.25rem, 2.375rem) clamp(1.5rem, 2vw + 1rem, 2.5rem);
+    padding: clamp(1.6rem, 1.5vw + 1.3rem, 2.4375rem) clamp(1.5rem, 2vw + 1rem, 2.5rem);
 }
 
 .calculator__header {
@@ -157,7 +157,7 @@ select {
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: clamp(0.375rem, 0.5vw + 0.35rem, 0.5rem);
+    gap: clamp(0.375rem, 0.5vw + 0.3rem, 0.625rem);
 }
 
 .radio-label {
@@ -165,9 +165,9 @@ select {
     font-size: var(--fs-btn);
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: clamp(0.75rem, 1vw + 0.5rem, 1.25rem);
     width: 100%;
-    height: 3.25rem;
+    height: 3.125rem;
     padding: 0 1rem;
     border: 1px solid var(--slate-500);
     border-radius: 0.25rem;
@@ -212,6 +212,12 @@ select {
 .form-label {
     color: var(--slate-700);
     margin-block-end: clamp(0.375rem, 0.5vw + 0.35rem, 0.625rem);
+    padding: 0;
+}
+
+.form-group:nth-child(2) {
+    position: relative;
+    left: 1px;
 }
 
 .input-wrapper {
@@ -246,6 +252,7 @@ select {
 .input-wrapper--currency .form-select {
     background-color: var(--slate-100);
     color: var(--slate-700);
+    font-size: var(--fs-btn);
     max-width: 4rem;
     padding: 0.75rem 0.75rem;
     height: 100%;
@@ -268,6 +275,7 @@ select {
     padding-block: 0.75rem;
     background-color: var(--slate-100);
     color: var(--slate-700);
+    font-size: var(--fs-btn);
     font-weight: var(--fw-bold);
     user-select: none;
 }
@@ -279,7 +287,7 @@ select {
 
 /* Specifically for the Years box */
 .input-suffix--years {
-    padding-inline: 1.125rem;
+    padding-inline: 1rem;
 }
 
 .calculator__submit-btn {
@@ -287,7 +295,7 @@ select {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: clamp(0.5rem, 1.5vw + 0.25rem, 1rem);
+    gap: clamp(0.5rem, 0.5vw + 0.35rem, 0.75rem);
     width: 100%;
     color: var(--slate-900);
     background-color: var(--lime);
@@ -350,6 +358,7 @@ select {
     align-items: center;
     justify-content: center;
     padding: clamp(1rem, 1.5vw + 1rem, 2rem);
+    /* margin-block-start: 0.9375rem; */
 }
 
 .results__image {
@@ -361,6 +370,7 @@ select {
     font-size: var(--fs-title);
     font-weight: var(--fw-bold);
     color: var(--white);
+    margin: 0;
 }
 
 .results.results--empty .results__description {
@@ -452,21 +462,15 @@ select {
         padding: 0;
         width: 100%;
         max-width: 63rem;
-        margin-top: 8vh;
-    }
-
-    .calculator__left {
-        display: flex;
-        flex-direction: column; 
-        justify-content: center;
+        margin-block-start: clamp(2rem, 8.25vh, 6rem);
     }
 
     .calculator__header {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        margin-block-start: clamp(-1rem, -0.05vw - 0.98rem, -0.98rem);
-        margin-block-end: clamp(1rem, 2vw + 0.5rem, 1.25rem);
+        margin-block-start: clamp(-1.375rem, -0.1vw - 1.05rem, -1.125rem);
+        margin-block-end: clamp(1rem, 0.5vw + 1.15rem, 1.375rem);
     }
 
     .calculator__clear-btn {
@@ -503,8 +507,14 @@ select {
         justify-content: center;
     }
 
+    .results.results--empty .results__empty-state {
+        gap: clamp(0.5rem, 0.5vw + 0.5rem, 0.875rem);
+        margin-block-start: clamp(0.1rem, 0.2vw, 0.25rem);
+        height: 100%; 
+    }
+
     .results.results--completed .results__completed-state {
-        padding-block: 2.25rem;
+        padding-block: clamp(1.5rem, 1.5vw + 1rem, 2.25rem);
     }
 }
 
