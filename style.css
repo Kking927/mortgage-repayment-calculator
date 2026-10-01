@@ -161,8 +161,6 @@ select {
 }
 
 .radio-label {
-    color: var(--slate-900);
-    font-size: var(--fs-btn);
     display: flex;
     align-items: center;
     gap: clamp(0.75rem, 1vw + 0.5rem, 1.25rem);
@@ -173,6 +171,7 @@ select {
     border-radius: 0.25rem;
     background-color: var(--white);
     color: var(--slate-900);
+    font-size: var(--fs-btn);
     font-weight: var(--fw-bold);
     cursor: pointer;
     transition: border-color 0.2s ease, background-color 0.2s ease;
@@ -221,6 +220,7 @@ select {
 }
 
 .input-wrapper {
+    position: relative;
     display: flex;
     align-items: stretch;
     width: 100%;
@@ -323,11 +323,24 @@ select {
     color: var(--white);
 }
 
-.form-error-msg {
+.input-wrapper + .form-error-msg,
+.form-group--radio .form-error-msg {
+    position: relative;
     color: var(--red);
     font-size: var(--fs-error);
-    margin-block-start: 0.5rem;
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.02em;
     display: none;
+    margin: 0;
+}
+
+/* Individual padding differences */
+.input-wrapper + .form-error-msg {
+    padding-block-start: 0.875rem;
+}
+
+.form-group--radio .form-error-msg {
+    padding-block-start: 0.25rem;
 }
 
 .form-group.error .form-error-msg {
@@ -502,7 +515,6 @@ select {
 
     .results {
         border-bottom-left-radius: 5rem;
-        display: flex;
         flex-direction: column;
         justify-content: center;
     }
