@@ -42,15 +42,6 @@
     box-sizing: border-box;
 }
 
-/* Ensure all interactive elements have a clear, visible focus state */
-input:focus-visible,
-button:focus-visible,
-.radio-label:focus-within,
-.input-wrapper:focus-within {
-    outline: 2px solid var(--lime);
-    outline-offset: 2px;
-}
-
 /* Remove spin buttons for Chrome, Safari, Edge, Opera */
 .form-input::-webkit-outer-spin-button,
 .form-input::-webkit-inner-spin-button {
@@ -101,6 +92,15 @@ textarea,
 select {
     font: inherit;
     }
+
+/* Ensure all interactive elements have a clear, visible focus state */
+input:focus-visible,
+button:focus-visible,
+.radio-label:focus-within,
+.input-wrapper:focus-within {
+    outline: 2px solid var(--lime);
+    outline-offset: 2px;
+}
 
 /* =================================main layout================================= */
 .calculator {
