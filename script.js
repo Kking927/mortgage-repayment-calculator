@@ -1,4 +1,15 @@
 /* ==========================================
+   0. USER-TABBING FOCUS DETECTOR
+   ========================================== */
+window.addEventListener('keydown', (e) => { 
+   if (e.key === 'Tab') document.body.classList.add('user-tabbing'); 
+});
+
+window.addEventListener('mousedown', () => { 
+   document.body.classList.remove('user-tabbing'); 
+});
+
+/* ==========================================
    1. DOM ELEMENTS SELECTION
    ========================================== */
 const mortgageForm = document.querySelector('.calculator__form');
