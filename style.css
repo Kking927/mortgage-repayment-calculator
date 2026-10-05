@@ -272,7 +272,7 @@ body.user-tabbing .input-wrapper:has(input:focus, select:focus) {
     color: var(--slate-700);
     font-size: var(--fs-btn);
     max-width: 4rem;
-    padding: 0.75rem 0.75rem;
+    padding: clamp(0.5rem, 1vw + 0.25rem, 0.75rem);
     height: 100%;
     border-radius: 0;
     cursor: pointer;
