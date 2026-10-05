@@ -484,7 +484,7 @@ input[type="radio"]:checked {
         padding: 0;
         width: 100%;
         max-width: 63rem;
-        margin-block-start: clamp(2rem, 8.25vh, 6rem);
+        margin: auto;
     }
 
     .calculator__header {
