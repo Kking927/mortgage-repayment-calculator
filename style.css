@@ -93,27 +93,6 @@ select {
     font: inherit;
     }
 
-/* Ensure all interactive elements have a clear, visible focus state */
-/* 1. Standard buttons and radio labels use default focus-visible */
-button:focus-visible,
-.radio-label:focus-visible,
-.calculator__clear-btn:focus-visible,
-.calculator__submit-btn:focus-visible {
-    outline: 2px solid var(--lime);
-    outline-offset: 2px;
-}
-
-/* 2. When clicked with a mouse, the input wrapper gets the slate border color */
-.input-wrapper:focus-within {
-    border-color: var(--slate-900);
-}
-
-/* 3. When tabbing via keyboard, the lime outline wraps around the input container */
-body.user-tabbing .input-wrapper:has(input:focus, select:focus) {
-    outline: 2px solid var(--lime);
-    outline-offset: 2px;
-}
-
 /* =================================main layout================================= */
 .calculator {
     display: flex;
@@ -148,6 +127,12 @@ body.user-tabbing .input-wrapper:has(input:focus, select:focus) {
     margin-block-start: clamp(-0.75rem, 0.5vw - 0.75rem, -0.5rem);
     margin-block-end: clamp(1rem, 1.5vw + 0.75rem, 1.875rem);
     transition: color 0.2s ease-in-out;
+}
+
+/* Apply the lime border on tab, but not mouse */
+.calculator__clear-btn:focus-visible {
+    outline: 2px solid var(--lime);
+    outline-offset: 2px;
 }
 
 .calculator__clear-btn:hover {
@@ -196,6 +181,11 @@ body.user-tabbing .input-wrapper:has(input:focus, select:focus) {
     font-weight: var(--fw-bold);
     cursor: pointer;
     transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.radio-label:focus-visible {
+    outline: 2px solid var(--lime);
+    outline-offset: 2px;
 }
 
 .radio-label:hover {
@@ -251,6 +241,17 @@ input[type="radio"]:checked {
     overflow: hidden;
     background-color: var(--white);
     transition: border-color 0.2s ease;
+}
+
+/* Apply the lime border on tab, but not mouse */
+body.user-tabbing .input-wrapper:has(input:focus, select:focus) {
+    outline: 2px solid var(--lime);
+    outline-offset: 2px;
+}
+
+/* When clicked with a mouse, the input wrapper gets the slate border color */
+.input-wrapper:focus-within {
+    border-color: var(--slate-900);
 }
 
 .input-wrapper .form-input,
@@ -322,6 +323,12 @@ input[type="radio"]:checked {
     padding-block: clamp(0.75rem, 1.5vw + 0.5rem, 0.9375rem);
     margin-block-start: 1rem;
     transition: background-color 0.2s ease-in-out;
+}
+
+/* Apply the lime border on tab, but not mouse */
+.calculator__submit-btn:focus-visible {
+    outline: 2px solid var(--lime);
+    outline-offset: 2px;
 }
 
 .calculator__submit-btn:hover {
