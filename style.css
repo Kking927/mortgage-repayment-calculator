@@ -96,8 +96,7 @@ select {
 /* Ensure all interactive elements have a clear, visible focus state */
 input:focus-visible,
 button:focus-visible,
-.radio-label:focus-within,
-.input-wrapper:focus-within {
+.radio-label:focus-within {
     outline: 2px solid var(--lime);
     outline-offset: 2px;
 }
