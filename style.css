@@ -94,9 +94,22 @@ select {
     }
 
 /* Ensure all interactive elements have a clear, visible focus state */
-input:focus-visible,
+/* 1. Standard buttons and radio labels use default focus-visible */
 button:focus-visible,
-.radio-label:focus-within {
+.radio-label:focus-visible,
+.calculator__clear-btn:focus-visible,
+.calculator__submit-btn:focus-visible {
+    outline: 2px solid var(--lime);
+    outline-offset: 2px;
+}
+
+/* 2. When clicked with a mouse, the input wrapper gets the slate border color */
+.input-wrapper:focus-within {
+    border-color: var(--slate-900);
+}
+
+/* 3. When tabbing via keyboard, the lime outline wraps around the input container */
+body.user-tabbing .input-wrapper:has(input:focus, select:focus) {
     outline: 2px solid var(--lime);
     outline-offset: 2px;
 }
@@ -238,10 +251,6 @@ input[type="radio"]:checked {
     overflow: hidden;
     background-color: var(--white);
     transition: border-color 0.2s ease;
-}
-
-.input-wrapper:focus-within {
-    border-color: var(--slate-900);
 }
 
 .input-wrapper .form-input,
