@@ -243,15 +243,15 @@ input[type="radio"]:checked {
     transition: border-color 0.2s ease;
 }
 
+/* When clicked with a mouse, the input wrapper gets the slate border color */
+.input-wrapper:focus-within {
+    border-color: var(--slate-900);
+}
+
 /* Apply the lime border on tab, but not mouse */
 body.user-tabbing .input-wrapper:has(input:focus, select:focus) {
     outline: 2px solid var(--lime);
     outline-offset: 2px;
-}
-
-/* When clicked with a mouse, the input wrapper gets the slate border color */
-.input-wrapper:focus-within {
-    border-color: var(--slate-900);
 }
 
 .input-wrapper .form-input,
