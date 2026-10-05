@@ -258,7 +258,7 @@ input[type="radio"]:checked {
     flex: 1;
     border: none;
     outline: none;
-    padding: 0.75rem 1rem;
+    padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(0.75rem, 2vw, 1rem);
     background: transparent;
     color: var(--slate-900);
     font-size: var(--fs-btn);
@@ -388,7 +388,6 @@ input[type="radio"]:checked {
     align-items: center;
     justify-content: center;
     padding: clamp(1rem, 1.5vw + 1rem, 2rem);
-    /* margin-block-start: 0.9375rem; */
 }
 
 .results__image {
