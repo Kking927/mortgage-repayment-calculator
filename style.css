@@ -336,17 +336,6 @@ body.user-tabbing .input-wrapper:has(input:focus, select:focus) {
 }
 
 /* =================================form error states================================= */
-.form-group.error .input-wrapper {
-    border-color: var(--red);
-}
-
-.form-group.error .input-suffix,
-.form-group.error .input-symbol,
-.form-group.error .form-select {
-    background-color: var(--red);
-    color: var(--white);
-}
-
 .input-wrapper + .form-error-msg,
 .form-group--radio .form-error-msg {
     position: relative;
@@ -365,6 +354,17 @@ body.user-tabbing .input-wrapper:has(input:focus, select:focus) {
 
 .form-group--radio .form-error-msg {
     padding-block-start: 0.25rem;
+}
+
+.form-group.error .input-wrapper {
+    border-color: var(--red);
+}
+
+.form-group.error .input-suffix,
+.form-group.error .input-symbol,
+.form-group.error .form-select {
+    background-color: var(--red);
+    color: var(--white);
 }
 
 .form-group.error .form-error-msg {
