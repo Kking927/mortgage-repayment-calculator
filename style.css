@@ -247,7 +247,6 @@ input[type="radio"]:checked {
     border-color: var(--slate-900);
 }
 
-/* Apply the lime border on tab, but not mouse */
 /* stylelint-disable-next-line selector-max-compound-selectors */
 body.user-tabbing .input-wrapper:has(input:focus, select:focus) {
     outline: 2px solid var(--lime);
@@ -321,7 +320,7 @@ body.user-tabbing .input-wrapper:has(input:focus, select:focus) {
     font-weight: var(--fw-bold);
     border-radius: 50rem;
     padding-block: clamp(0.75rem, 1.5vw + 0.5rem, 0.9375rem);
-    margin-block-start: 1rem;
+    margin-block-start: clamp(0.75rem, 1vw + 0.5rem, 1rem);
     transition: background-color 0.2s ease-in-out;
 }
 
@@ -356,7 +355,6 @@ body.user-tabbing .input-wrapper:has(input:focus, select:focus) {
     padding-block-start: clamp(0.125rem, 0.5vw + 0.1rem, 0.25rem);
 }
 
-/* stylelint-disable-next-line selector-no-qualifying-type */
 .form-group.error .input-wrapper {
     border-color: var(--red);
 }
